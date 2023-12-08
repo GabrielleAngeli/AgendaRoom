@@ -4,10 +4,10 @@ plugins {
     id("com.google.devtools.ksp")
 }
 android {
-    namespace = "br.ifsp.agendaroom"
+    namespace = "br.edu.ifsp.scl.agendaroom"
     compileSdk = 34
     defaultConfig {
-        applicationId = "br.ifsp.agendaroom"
+        applicationId = "br.edu.ifsp.scl.agendaroom"
         minSdk = 33
         targetSdk = 34
         versionCode = 1
