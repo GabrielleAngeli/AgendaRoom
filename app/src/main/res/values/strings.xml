@@ -7,4 +7,5 @@
     <string name="email">Email:</string>
     <string name="salvar">Salvar</string>
     <string name="excluir">Excluir</string>
+    <string name="pesquisar">Pesquisar</string>
 </resources>

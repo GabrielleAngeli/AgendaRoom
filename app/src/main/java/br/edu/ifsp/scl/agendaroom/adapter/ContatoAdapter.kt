@@ -2,11 +2,13 @@ package br.edu.ifsp.scl.agendaroom.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ifsp.scl.agendaroom.data.Contato
 import br.edu.ifsp.scl.agendaroom.databinding.ContatoCelulaBinding
 
-class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>() {
+class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>(), Filterable {
     private lateinit var binding: ContatoCelulaBinding
 
     var listener: ContatoListener?=null
@@ -57,4 +59,29 @@ class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>()
     {
         fun onItemClick(pos: Int)
     }
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(p0: CharSequence?): FilterResults {
+                if (p0.toString().isEmpty())
+                    contatosListaFilterable = contatosLista
+                else
+                {
+                    val resultList = ArrayList<Contato>()
+                    for (row in contatosLista)
+                        if (row.nome.lowercase().contains(p0.toString().lowercase()))
+                            resultList.add(row)
+                    contatosListaFilterable = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = contatosListaFilterable
+                return filterResults
+            }
+            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                contatosListaFilterable = p1?.values as ArrayList<Contato>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
 }
