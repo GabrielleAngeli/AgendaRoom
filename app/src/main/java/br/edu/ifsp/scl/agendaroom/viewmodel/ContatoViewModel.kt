@@ -23,6 +23,13 @@ class ContatoViewModel(application: Application): AndroidViewModel(application) 
         repository.insert(contato)
     }
 
+    fun update(contato: Contato) = viewModelScope.launch(Dispatchers.IO){
+        repository.update(contato)
+    }
+    fun delete(contato: Contato) = viewModelScope.launch(Dispatchers.IO){
+        repository.delete(contato)
+    }
+
     fun getContactById(id: Int) {
         viewModelScope.launch {
             contato = repository.getContactById(id)

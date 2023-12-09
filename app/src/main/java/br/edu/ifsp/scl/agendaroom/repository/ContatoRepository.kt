@@ -9,6 +9,14 @@ class ContatoRepository (private val contatoDAO: ContatoDAO) {
         contatoDAO.insert(contato)
     }
 
+    suspend fun update(contato: Contato){
+        contatoDAO.update(contato)
+    }
+
+    suspend fun delete(contato: Contato){
+        contatoDAO.delete(contato)
+    }
+
     fun getAllContacts(): LiveData<List<Contato>> {
         return contatoDAO.getAllContacts()
     }

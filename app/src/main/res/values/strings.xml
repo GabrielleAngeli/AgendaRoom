@@ -6,4 +6,5 @@
     <string name="fone">Telefone:</string>
     <string name="email">Email:</string>
     <string name="salvar">Salvar</string>
+    <string name="excluir">Excluir</string>
 </resources>
