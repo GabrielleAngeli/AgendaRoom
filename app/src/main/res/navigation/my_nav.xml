@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listaContatosFragment"
         android:name="br.edu.ifsp.scl.agendaroom.ui.ListaContatosFragment"
-        android:label="fragment_lista_contatos"
+        android:label="Contatos"
         tools:layout="@layout/fragment_lista_contatos" >
         <action
             android:id="@+id/action_listaContatosFragment_to_cadastroFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/cadastroFragment"
         android:name="br.edu.ifsp.scl.agendaroom.ui.CadastroFragment"
-        android:label="fragment_cadastro"
+        android:label="Novo contato"
         tools:layout="@layout/fragment_cadastro" />
 </navigation>
