@@ -9,15 +9,16 @@ import br.edu.ifsp.scl.agendaroom.data.Contato
 import br.edu.ifsp.scl.agendaroom.databinding.ContatoCelulaBinding
 
 class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>(), Filterable {
-    private lateinit var binding: ContatoCelulaBinding
 
     var listener: ContatoListener?=null
 
     var contatosLista = ArrayList<Contato>()
     var contatosListaFilterable = ArrayList<Contato>()
 
-    fun updateList(newList: ArrayList<Contato>) {
-        contatosLista = newList
+    private lateinit var binding: ContatoCelulaBinding
+
+    fun updateList(newList: List<Contato> ){
+        contatosLista = newList as ArrayList<Contato>
         contatosListaFilterable = contatosLista
         notifyDataSetChanged()
     }
@@ -31,22 +32,26 @@ class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>()
         parent: ViewGroup,
         viewType: Int
     ): ContatoViewHolder {
+
         binding = ContatoCelulaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ContatoViewHolder(binding)
+
+        return  ContatoViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ContatoViewHolder, position: Int) {
-        holder.nomeVH.text = contatosLista[position].nome
-        holder.foneVH.text = contatosLista[position].fone
+        holder.nomeVH.text = contatosListaFilterable[position].nome
+        holder.foneVH.text = contatosListaFilterable[position].fone
     }
 
     override fun getItemCount(): Int {
-        return contatosLista.size
+        return contatosListaFilterable.size
     }
 
-    inner class ContatoViewHolder(view: ContatoCelulaBinding) : RecyclerView.ViewHolder(view.root) {
+    inner class ContatoViewHolder(view: ContatoCelulaBinding): RecyclerView.ViewHolder(view.root)
+    {
         val nomeVH = view.nome
         val foneVH = view.fone
+
         init {
             view.root.setOnClickListener {
                 listener?.onItemClick(adapterPosition)
@@ -77,10 +82,12 @@ class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>()
                 filterResults.values = contatosListaFilterable
                 return filterResults
             }
+
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
                 contatosListaFilterable = p1?.values as ArrayList<Contato>
                 notifyDataSetChanged()
             }
+
         }
     }
 
