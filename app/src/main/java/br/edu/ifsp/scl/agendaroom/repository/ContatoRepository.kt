@@ -13,4 +13,7 @@ class ContatoRepository (private val contatoDAO: ContatoDAO) {
         return contatoDAO.getAllContacts()
     }
 
+    fun getContactById(id: Int): LiveData<Contato>{
+        return contatoDAO.getContactById(id)
+    }
 }

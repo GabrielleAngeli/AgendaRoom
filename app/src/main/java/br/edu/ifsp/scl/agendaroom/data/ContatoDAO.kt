@@ -13,4 +13,7 @@ interface ContatoDAO {
     @Query("SELECT * FROM contato ORDER BY nome")
     fun getAllContacts(): LiveData<List<Contato>>
 
+    @Query("SELECT * FROM contato WHERE id=:id")
+    fun getContactById(id: Int): LiveData<Contato>
+
 }

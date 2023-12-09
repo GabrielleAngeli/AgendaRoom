@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_listaContatosFragment_to_cadastroFragment"
             app:destination="@id/cadastroFragment" />
+        <action
+            android:id="@+id/action_listaContatosFragment_to_detalheFragment"
+            app:destination="@id/detalheFragment" />
     </fragment>
     <fragment
         android:id="@+id/cadastroFragment"
         android:name="br.edu.ifsp.scl.agendaroom.ui.CadastroFragment"
         android:label="Novo contato"
         tools:layout="@layout/fragment_cadastro" />
+    <fragment
+        android:id="@+id/detalheFragment"
+        android:name="br.edu.ifsp.scl.agendaroom.ui.DetalheFragment"
+        android:label="Detalhes"
+        tools:layout="@layout/fragment_detalhe" />
 </navigation>

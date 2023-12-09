@@ -9,6 +9,8 @@ import br.edu.ifsp.scl.agendaroom.databinding.ContatoCelulaBinding
 class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>() {
     private lateinit var binding: ContatoCelulaBinding
 
+    var listener: ContatoListener?=null
+
     var contatosLista = ArrayList<Contato>()
     var contatosListaFilterable = ArrayList<Contato>()
 
@@ -16,6 +18,11 @@ class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>()
         contatosLista = newList
         contatosListaFilterable = contatosLista
         notifyDataSetChanged()
+    }
+
+    fun setClickListener(listener: ContatoListener)
+    {
+        this.listener = listener
     }
 
     override fun onCreateViewHolder(
@@ -38,5 +45,16 @@ class ContatoAdapter(): RecyclerView.Adapter<ContatoAdapter.ContatoViewHolder>()
     inner class ContatoViewHolder(view: ContatoCelulaBinding) : RecyclerView.ViewHolder(view.root) {
         val nomeVH = view.nome
         val foneVH = view.fone
+        init {
+            view.root.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+            }
+        }
+
+    }
+
+    interface ContatoListener
+    {
+        fun onItemClick(pos: Int)
     }
 }
